@@ -1,0 +1,100 @@
+body {
+    font: normal 16px Arial, Helvetica, sans-serif;
+}
+
+a {
+    display:block;
+}
+
+@media screen and (min-width:1024px) {
+    body {
+        width: 80%;
+        margin:auto;
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:1023px) {
+    body {
+        width: 90%;
+        margin:auto;
+    }
+}
+
+@media screen and (max-width:767px) {
+    body {
+        width: 100%;
+        margin:auto;
+    }
+}
+
+.message-list {
+    min-height: 50vh;
+    width: 100%;
+}
+
+.text {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    height: 400px;
+}
+
+button {
+    height: 30px;
+    margin: 0 15px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.text input {
+    width: 200px;
+    margin: 0 15px;
+    height: 30px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+
+.bot {
+    display: flex;
+    flex-direction: column;
+    float: left;
+    right: 0;
+    text-align: left;
+    padding: 10px;
+    width: 80%;
+    background-color: #e8e8e8;
+    border-radius: 3px;
+    border: 1px solid;
+    border-color: black;
+    margin: 5px 0;
+}
+
+.human {
+    display: flex;
+    flex-direction: column;
+    float: right;
+    left: 0;
+    text-align: right;
+    padding: 10px;
+    width: 80%;
+    background-color: rgb(111, 111, 255);
+    border-radius: 3px;
+    border: 1px solid;
+    border-color: black;
+    margin: 5px 0;
+}
+
+.human-text, .bot-text {
+    font-weight: 400;
+    font-size: 14px;
+}
+
+textarea {
+    width: 40%;
+    min-width: 150px;
+    height: 250px;
+    margin-top: auto;
+    margin-bottom: auto;
+}

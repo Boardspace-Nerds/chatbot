@@ -1,0 +1,57 @@
+{# templates/base.html #}
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
+        <title>RUSH B</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                document.getElementById("sendButton").addEventListener("click", function() {
+                    let messageList = document.getElementsByClassName('message-list')[0];
+                    let text = document.getElementById("inputText").value;
+                    let humanDiv = document.createElement("div");
+                    let button = document.getElementById('sendButton');
+
+                    humanDiv.classList.add("human");
+                    humanDiv.innerHTML = `<p class="human-text">${text}</p>`;
+                    messageList.appendChild(humanDiv);
+                    console.log(encodeURIComponent(text));
+                    button.disabled = true;
+                    fetch(`http://localhost:5000/message?content=${encodeURIComponent(text)}`, {
+                        method: 'GET',
+                        headers: {
+                            "Content-Type": 'application/json'
+                        }
+                    })
+                        .then(response => response.text())
+                        .then(data => {
+                            let replyDiv = document.createElement("div");
+                            replyDiv.classList.add("bot");
+                            replyDiv.innerHTML = `<p class="bot-text">${data}</p>`;
+                            messageList.appendChild(replyDiv);
+                        })
+                        .catch(error => console.error('Error:', error));
+                    //flush text in chatbox upon message send
+                    button.disabled = false;
+                    document.getElementById('inputText').value = '';
+                });
+
+            });
+        </script>
+    </head>
+    <body>
+        <h1>RUSH B</h1>
+        <div class="message-list">
+        <div class="bot">
+            <p class="bot-text">{{greetingMessage }}</p>
+        </div>
+        </div>
+        <div class="text">
+            <textarea id="inputText"></textarea>
+            <button  id="sendButton">Send</button>
+        </div>
+    </body>
+</html>
+

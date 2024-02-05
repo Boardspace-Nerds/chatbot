@@ -12,10 +12,13 @@
                     let messageList = document.getElementsByClassName('message-list')[0];
                     let text = document.getElementById("inputText").value;
                     let humanDiv = document.createElement("div");
+                    let button = document.getElementById('sendButton');
+
                     humanDiv.classList.add("human");
                     humanDiv.innerHTML = `<p class="human-text">${text}</p>`;
                     messageList.appendChild(humanDiv);
                     console.log(encodeURIComponent(text));
+                    button.disabled = true;
                     fetch(`http://localhost:5000/message?content=${encodeURIComponent(text)}`, {
                         method: 'GET',
                         headers: {
@@ -31,6 +34,7 @@
                         })
                         .catch(error => console.error('Error:', error));
                     //flush text in chatbox upon message send
+                    button.disabled = false;
                     document.getElementById('inputText').value = '';
                 });
 

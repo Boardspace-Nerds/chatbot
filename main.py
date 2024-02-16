@@ -1,17 +1,17 @@
 import openai
 import os
 from dotenv import load_dotenv
-from llama_index import SQLDatabase
-from llama_index.indices.struct_store import (
+from llama_index.core import SQLDatabase
+from llama_index.core.indices.struct_store import (
     NLSQLTableQueryEngine,
     SQLTableRetrieverQueryEngine,
 )
-from llama_index.objects import (
+from llama_index.core.objects import (
     SQLTableNodeMapping,
     ObjectIndex,
     SQLTableSchema,
 )
-from llama_index import VectorStoreIndex
+from llama_index.core import VectorStoreIndex
 from sqlalchemy import create_engine, MetaData, Table, Column, String, Numeric, ForeignKey, insert, text
 from flask import Flask, request
 
